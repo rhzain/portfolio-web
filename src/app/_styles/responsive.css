@@ -128,6 +128,26 @@
 }
 
 @media (min-width: 60rem) {
+  .section-progress-rail {
+    position: fixed;
+    z-index: var(--z-sticky);
+    inset-block-start: 50%;
+    inset-inline-start: min(
+      5vw,
+      max(0px, calc(50% - (var(--content-max) * 0.5) - 4.5rem))
+    );
+    display: block;
+    visibility: visible;
+    width: 3rem;
+    opacity: 1;
+    transform: translateY(-50%);
+  }
+
+  .section-progress-rail-track {
+    display: grid;
+    pointer-events: auto;
+  }
+
   .document-section {
     padding-block: var(--space-3xl);
   }

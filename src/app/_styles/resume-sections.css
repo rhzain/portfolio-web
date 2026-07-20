@@ -22,6 +22,59 @@
   max-width: var(--reading-max);
 }
 
+.section-progress-rail {
+  display: none;
+}
+
+.section-progress-rail-layout {
+  width: 24rem;
+  pointer-events: none;
+}
+
+.section-progress-rail-track {
+  display: none;
+}
+
+.section-progress-rail-track a {
+  color: var(--color-muted);
+}
+
+.section-progress-rail-track a .text-foreground {
+  color: var(--color-ink);
+}
+
+.section-progress-rail-track a:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+.section-progress-card {
+  width: min(100%, 18rem);
+  padding: var(--space-xs) var(--space-sm);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-card);
+  background: var(--color-paper);
+}
+
+.section-progress-card p,
+.section-progress-card span {
+  margin: 0;
+}
+
+.section-progress-card p {
+  color: var(--color-ink);
+  font-weight: 650;
+}
+
+.section-progress-card span {
+  display: block;
+  margin-top: var(--space-3xs);
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
 .about-copy p {
   margin: 0;
   color: var(--color-ink-2);

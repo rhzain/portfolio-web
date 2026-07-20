@@ -20,6 +20,39 @@ export const navigation = [
   { label: "Projects", href: "#projects" },
 ];
 
+export const previewNavigation = [
+  {
+    id: "about",
+    label: "About",
+    description: "Read the personal overview and education details.",
+    href: "#about",
+  },
+  {
+    id: "experience",
+    label: "Experience",
+    description: "Review roles, programs, and supporting technical work.",
+    href: "#experience",
+  },
+  {
+    id: "stack",
+    label: "Stack",
+    description: "See the tools and technical practices used across projects.",
+    href: "#stack",
+  },
+  {
+    id: "projects",
+    label: "Projects",
+    description: "Browse selected work and implementation details.",
+    href: "#projects",
+  },
+  {
+    id: "contact",
+    label: "Contact",
+    description: "Find the available channels for starting a conversation.",
+    href: "#contact",
+  },
+];
+
 export const identity = {
   initials: "YN",
   name: "Your Name",
