@@ -1,4 +1,5 @@
 import { identity, identityContacts } from "@/content/portfolio";
+import { ProfilePortrait } from "@/app/_components/profile-portrait";
 import { TwistingRibbon } from "@/components/ui/twisting-ribbon";
 
 export function IdentitySection() {
@@ -16,14 +17,11 @@ export function IdentitySection() {
       />
 
       <div className="identity-inner">
-        <div className="identity-mark" aria-hidden="true">
-          {identity.initials}
-        </div>
+        <ProfilePortrait name={identity.name} />
 
         <div className="identity-copy">
-          <p className="identity-role content-slot">{identity.role}</p>
           <h1 id="identity-title">{identity.name}</h1>
-          <p className="identity-lede content-slot">{identity.lede}</p>
+          <p className="identity-lede">{identity.lede}</p>
 
           <dl className="identity-facts">
             <div>
@@ -37,27 +35,32 @@ export function IdentitySection() {
           </dl>
 
           <div className="identity-links" aria-label="Profile links">
-            {identityContacts.map((contact) => (
-              <span
-                className="identity-contact"
-                aria-disabled="true"
-                aria-label={`${contact.label} link pending`}
-                title={contact.pending}
-                key={contact.label}
-              >
-                <span className="contact-mark" aria-hidden="true">
-                  {contact.mark}
-                </span>
-                {contact.label}
-              </span>
-            ))}
+            {identityContacts.map((contact) => {
+              const opensNewTab =
+                contact.href.startsWith("http") || contact.href.endsWith(".pdf");
+
+              return (
+                <a
+                  className="identity-contact identity-contact-link"
+                  href={contact.href}
+                  key={contact.label}
+                  rel={opensNewTab ? "noreferrer" : undefined}
+                  target={opensNewTab ? "_blank" : undefined}
+                >
+                  <span className="contact-mark" aria-hidden="true">
+                    {contact.mark}
+                  </span>
+                  {contact.label}
+                </a>
+              );
+            })}
 
             <a className="identity-work-link" href="#projects">
               <span
                 className="contact-mark identity-work-mark"
                 aria-hidden="true"
               >
-                ↘
+                ↓
               </span>
               View projects
             </a>

@@ -1,4 +1,4 @@
-/* Hallmark · pre-emit critique: P3 H5 E4 S4 R5 V4 */
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V4 */
 /* Hallmark · genre: modern-minimal · macrostructure: Long Document · design-system: DESIGN.md · designed-as-app · theme: studied-DNA (source: user-supplied image) · enrichment: quiet monochrome canvas ribbon · nav: detached solid utility bar · footer: Ft2 · contrast: pass (40–41) · slop: user-directed exception (45) · mobile: pass (34, 49–57) */
 :root {
   color-scheme: light;
@@ -13,6 +13,7 @@
   --color-accent: oklch(22% 0.007 255);
   --color-accent-ink: oklch(98% 0.003 255);
   --color-focus: oklch(43% 0.012 255);
+  --color-image-flash: oklch(100% 0 0);
   --color-ribbon-face: var(--color-ink);
   --color-ribbon-fold-a: var(--color-ink-2);
   --color-ribbon-fold-b: var(--color-muted);
@@ -34,6 +35,8 @@
   --space-2xl: 4.5rem;
   --space-3xl: 6rem;
   --space-4xl: 8rem;
+  --shadow-floating: 0 var(--space-2xs) var(--space-md)
+    color-mix(in oklab, var(--color-ink) 12%, transparent);
 
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
@@ -74,6 +77,8 @@
     --color-accent: oklch(93% 0.006 255);
     --color-accent-ink: oklch(14% 0.006 255);
     --color-focus: oklch(78% 0.012 255);
+    --shadow-floating: 0 var(--space-2xs) var(--space-md)
+      color-mix(in oklab, var(--color-paper) 60%, transparent);
   }
 }
 
@@ -90,6 +95,8 @@
   --color-accent: oklch(93% 0.006 255);
   --color-accent-ink: oklch(14% 0.006 255);
   --color-focus: oklch(78% 0.012 255);
+  --shadow-floating: 0 var(--space-2xs) var(--space-md)
+    color-mix(in oklab, var(--color-paper) 60%, transparent);
 }
 
 html[data-beui-vt="rect"]::view-transition-old(root) {

@@ -27,6 +27,17 @@ export function SectionProgressRail() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    document.documentElement.toggleAttribute(
+      "data-reading-index-active",
+      isVisible,
+    );
+
+    return () => {
+      document.documentElement.removeAttribute("data-reading-index-active");
+    };
+  }, [isVisible]);
+
+  useEffect(() => {
     const sections = previewNavigation.flatMap((item) => {
       const element = document.getElementById(item.id);
       return element ? [{ id: item.id, element }] : [];

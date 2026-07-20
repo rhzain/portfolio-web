@@ -6,7 +6,7 @@ export function AboutSection() {
       <h2 id="about-title">About</h2>
       <div className="about-copy">
         {about.paragraphs.map((paragraph) => (
-          <p className="content-slot" key={paragraph}>
+          <p key={paragraph}>
             {paragraph}
           </p>
         ))}

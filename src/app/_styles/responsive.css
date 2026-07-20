@@ -1,47 +1,4 @@
 @media (min-width: 40rem) {
-  .utility-nav {
-    grid-template-columns: auto minmax(0, 1fr) auto;
-    padding-inline-start: var(--space-xs);
-  }
-
-  .brand-name {
-    display: inline;
-  }
-
-  .desktop-nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-2xs);
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .desktop-nav a {
-    padding-inline: var(--space-xs);
-    border-radius: calc(var(--radius-card) - 0.125rem);
-    color: var(--color-ink-2);
-    font-size: var(--text-sm);
-    font-weight: 600;
-    transition: background-color var(--dur-base) var(--ease-out),
-      color var(--dur-base) var(--ease-out);
-  }
-
-  .desktop-nav a:hover,
-  .desktop-nav a:focus-visible {
-    background: var(--color-paper-3);
-    color: var(--color-ink);
-  }
-
-  .desktop-nav a:active {
-    opacity: 0.7;
-  }
-
-  .mobile-nav {
-    display: none;
-  }
-
   .site-shell,
   .site-footer {
     width: min(calc(100% - 3rem), var(--content-max));
@@ -167,7 +124,7 @@
   }
 
   .theme-toggle:not(:disabled):hover {
-    background: var(--color-paper-3);
+    background: transparent;
     color: var(--color-ink);
   }
 

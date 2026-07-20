@@ -24,56 +24,60 @@ export const previewNavigation = [
   {
     id: "about",
     label: "About",
-    description: "Read the personal overview and education details.",
+    description: "Know about me.",
     href: "#about",
   },
   {
     id: "experience",
     label: "Experience",
-    description: "Review roles, programs, and supporting technical work.",
+    description: "What I've been through.",
     href: "#experience",
   },
   {
     id: "stack",
     label: "Stack",
-    description: "See the tools and technical practices used across projects.",
+    description: "My tools.",
     href: "#stack",
   },
   {
     id: "projects",
     label: "Projects",
-    description: "Browse selected work and implementation details.",
+    description: "Made by me (and friends).",
     href: "#projects",
   },
   {
     id: "contact",
     label: "Contact",
-    description: "Find the available channels for starting a conversation.",
+    description: "Let's get in touch.",
     href: "#contact",
   },
 ];
 
 export const identity = {
-  initials: "YN",
-  name: "Your Name",
+  initials: "rhzain",
+  name: "Muhammad Raihan Rizky Zain",
   role: "Add your primary role",
   lede:
-    "Add one concise sentence about the software you build, the problems you understand, and the kind of work you want to do next.",
-  location: "City, Country",
-  status: "Add availability wording",
+    "AI and Software Engineer; Building Practical Solutions and Tinkering with AI;",
+  location: "Bogor, Indonesia",
+  status: "Available",
 };
 
 export const identityContacts = [
-  { label: "Email", mark: "@", pending: "Add public email address" },
-  { label: "GitHub", mark: "GH", pending: "Add GitHub URL" },
-  { label: "LinkedIn", mark: "in", pending: "Add LinkedIn URL" },
-  { label: "Résumé", mark: "CV", pending: "Add resume URL" },
+  { label: "Email", mark: "@", href: "mailto:mrrzzain@gmail.com" },
+  { label: "GitHub", mark: "GH", href: "https://github.com/rhzain" },
+  {
+    label: "LinkedIn",
+    mark: "in",
+    href: "https://www.linkedin.com/in/raihanzain/",
+  },
+  { label: "Résumé", mark: "CV", href: "/resume.pdf" },
 ];
 
 export const about = {
   paragraphs: [
-    "Add a short first-person introduction. Name the work you care about, the perspective you bring, and the environments where you do your best work.",
-    "Use a second paragraph only when it adds something concrete: a current focus, a formative background, or a principle that shapes how you build.",
+    "I’m a Computer Science undergraduate at Universitas Padjadjaran, currently exploring the intersection of software development and artificial intelligence. I enjoy understanding a problem, shaping a practical solution, and improving it through experimentation and feedback.",
+    "My experience spans Laravel and Node.js backend systems, real-time media and IoT pipelines, and AI projects involving retrieval, prediction, and model integration. I work best in collaborative environments where I can exchange ideas, learn quickly, and help turn ambitious concepts into dependable products.",
   ],
   education: {
     degree: "Bachelor’s Degree in Computer Science",
@@ -112,7 +116,7 @@ export const experienceGroups: readonly ExperienceGroup[] = [
         ],
       },
       {
-        period: "Feb 2026 — Present",
+        period: "Feb 2026 — Jul 2026",
         role: "Artificial Intelligence Laboratory Assistant",
         organization: "Informatics · Universitas Padjadjaran",
         location: "Jatinangor, Indonesia",
@@ -126,7 +130,7 @@ export const experienceGroups: readonly ExperienceGroup[] = [
     label: "Programs",
     entries: [
       {
-        period: "Feb 2026 — Present",
+        period: "Feb 2026 — Jul 2026",
         role: "AI Engineering Cohort",
         organization: "Coding Camp powered by DBS Foundation",
         location: "Remote",
@@ -155,23 +159,58 @@ export const experienceGroups: readonly ExperienceGroup[] = [
 
 export const stack = [
   {
-    label: "Interface",
-    tools: "Add the languages, frameworks, and UI tools you use with confidence.",
+    label: "Software",
+    tools: [
+      { name: "JavaScript", icon: "javascript" },
+      { name: "TypeScript", icon: "typescript" },
+      { name: "PHP", icon: "php" },
+      { name: "Java", icon: "openjdk" },
+      { name: "C# / .NET", icon: "dotnet" },
+      { name: "Next.js", icon: "nextdotjs" },
+      { name: "Node.js", icon: "nodedotjs" },
+      { name: "Express", icon: "express" },
+      { name: "Laravel", icon: "laravel" },
+      { name: "Flask", icon: "flask" },
+      { name: "Streamlit", icon: "streamlit" },
+      { name: "Unity", icon: "unity" },
+    ],
   },
   {
-    label: "Systems",
-    tools: "Add the runtime, database, API, and infrastructure tools you know well.",
+    label: "AI & Vision",
+    tools: [
+      { name: "Python", icon: "python" },
+      { name: "PyTorch", icon: "pytorch" },
+      { name: "TensorFlow", icon: "tensorflow" },
+      { name: "Scikit-learn", icon: "scikitlearn" },
+      { name: "LangChain", icon: "langchain" },
+      { name: "OpenCV", icon: "opencv" },
+    ],
   },
   {
-    label: "Delivery",
-    tools: "Add your testing, version control, CI, deployment, and collaboration tools.",
+    label: "Data & Infrastructure",
+    tools: [
+      { name: "PostgreSQL", icon: "postgresql" },
+      { name: "MongoDB", icon: "mongodb" },
+      { name: "MySQL", icon: "mysql" },
+      { name: "Redis", icon: "redis" },
+      { name: "Docker", icon: "docker" },
+      { name: "Nginx", icon: "nginx" },
+      { name: "Tailscale", icon: "tailscale" },
+      { name: "Linux", icon: "linux" },
+    ],
   },
   {
-    label: "Practice",
-    tools:
-      "Add the product, design, accessibility, or research capabilities relevant to your work.",
+    label: "Tools",
+    tools: [
+      { name: "Git", icon: "git" },
+      { name: "GitHub", icon: "github" },
+      { name: "Swagger", icon: "swagger" },
+      { name: "Postman", icon: "postman" },
+      { name: "Notion", icon: "notion" },
+      { name: "Figma", icon: "figma" },
+    ],
   },
-];
+] as const;
 
 export const projects = [
   {
@@ -204,13 +243,25 @@ export const projects = [
 
 export const contact = {
   introduction:
-    "Add a direct invitation that reflects the roles, collaborations, or project conversations you want to receive.",
+    "Let’s share our thoughts and see what we can build together.",
   details: [
-    { label: "Email", value: "Add public email address" },
-    { label: "GitHub", value: "Add GitHub URL" },
-    { label: "LinkedIn", value: "Add LinkedIn URL" },
-    { label: "Resume", value: "Add resume URL" },
+    {
+      label: "Email",
+      value: "mrrzzain@gmail.com",
+      href: "mailto:mrrzzain@gmail.com",
+    },
+    {
+      label: "GitHub",
+      value: "github.com/rhzain",
+      href: "https://github.com/rhzain",
+    },
+    {
+      label: "LinkedIn",
+      value: "linkedin.com/in/raihanzain",
+      href: "https://www.linkedin.com/in/raihanzain/",
+    },
+    { label: "Résumé", value: "résumé-pdf", href: "/resume.pdf" },
   ],
 };
 
-export const footerCopy = "Your Name · Portfolio content draft · 2026";
+export const footerCopy = "rhzain's portfolio · 2026";

@@ -19,7 +19,7 @@
 .about-copy {
   display: grid;
   gap: var(--space-sm);
-  max-width: var(--reading-max);
+  width: 100%;
 }
 
 .section-progress-rail {
@@ -50,7 +50,7 @@
 }
 
 .section-progress-card {
-  width: min(100%, 18rem);
+  width: min(100%, 10rem);
   padding: var(--space-xs) var(--space-sm);
   border: 1px solid var(--color-rule);
   border-radius: var(--radius-card);
@@ -78,6 +78,7 @@
 .about-copy p {
   margin: 0;
   color: var(--color-ink-2);
+  text-align: justify;
 }
 
 .about-education {
@@ -295,15 +296,91 @@
 .stack-list div {
   display: grid;
   gap: var(--space-xs);
-  padding-block: var(--space-sm);
+  padding-block: var(--space-md);
   border-bottom: 1px solid var(--color-rule);
 }
 
 .stack-list dt {
-  font-weight: 700;
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .stack-list dd {
   margin: 0;
+}
+
+.stack-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stack-tooltip-trigger {
+  display: flex;
+}
+
+.stack-tool {
+  display: grid;
+  appearance: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-radius: var(--radius-card);
+  background: transparent;
   color: var(--color-ink-2);
+  transition: color var(--dur-base) var(--ease-out);
+}
+
+.stack-tool svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex: 0 0 auto;
+}
+
+.stack-tool svg:not(.stack-tool-artwork) {
+  fill: currentColor;
+}
+
+.stack-tool .stack-tool-artwork {
+  filter: grayscale(1);
+  transition: filter var(--dur-base) var(--ease-out);
+}
+
+.stack-tool:focus-visible {
+  color: var(--stack-brand);
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.stack-tool:focus-visible .stack-tool-artwork,
+.stack-tool:active .stack-tool-artwork {
+  filter: none;
+}
+
+.stack-tool:active {
+  color: var(--stack-brand);
+}
+
+.stack-tool:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+@media (hover: hover) {
+  .stack-tool:hover {
+    color: var(--stack-brand);
+  }
+
+  .stack-tool:hover .stack-tool-artwork {
+    filter: none;
+  }
 }

@@ -9,7 +9,6 @@ export function ExperienceSection() {
     >
       <div className="experience-heading">
         <h2 id="experience-title">Experience</h2>
-        <p>Selected engineering roles and structured technical programs.</p>
       </div>
 
       <div className="experience-groups">
