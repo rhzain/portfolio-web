@@ -10,7 +10,6 @@ import { previewNavigation } from "@/content/portfolio";
 import { EASE_IN, EASE_OUT } from "@/lib/ease";
 
 const FIRST_SECTION_ID = previewNavigation[0]?.id ?? "";
-const VISIBILITY_HYSTERESIS = 32;
 
 function SectionPreview({ item }: { item: PreviewRailItem }) {
   return (
@@ -45,44 +44,34 @@ export function SectionProgressRail() {
 
     if (!sections.length) return;
 
-    let frame = 0;
+    const visibleSections = new Set<string>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const id = entry.target.id;
+          if (entry.isIntersecting) visibleSections.add(id);
+          else visibleSections.delete(id);
 
-    const update = () => {
-      frame = 0;
-      const readingLine = window.innerHeight * 0.35;
-      const firstSectionTop = sections[0].element.getBoundingClientRect().top;
-      let nextActiveId = sections[0].id;
+          if (id === FIRST_SECTION_ID) {
+            setIsVisible(
+              entry.isIntersecting ||
+                entry.boundingClientRect.top < (entry.rootBounds?.bottom ?? 0),
+            );
+          }
+        }
 
-      for (const section of sections) {
-        if (section.element.getBoundingClientRect().top > readingLine) break;
-        nextActiveId = section.id;
-      }
+        const nextActive = sections.findLast(({ id }) =>
+          visibleSections.has(id),
+        );
+        if (nextActive) setActiveId(nextActive.id);
+      },
+      { rootMargin: "0px 0px -65% 0px" },
+    );
 
-      const pageBottom = window.scrollY + window.innerHeight;
-      if (pageBottom >= document.documentElement.scrollHeight - 1) {
-        nextActiveId = sections.at(-1)?.id ?? nextActiveId;
-      }
-
-      setIsVisible(
-        (visible) =>
-          firstSectionTop <=
-          readingLine + (visible ? VISIBILITY_HYSTERESIS : 0),
-      );
-      setActiveId(nextActiveId);
-    };
-
-    const scheduleUpdate = () => {
-      if (!frame) frame = window.requestAnimationFrame(update);
-    };
-
-    update();
-    window.addEventListener("scroll", scheduleUpdate, { passive: true });
-    window.addEventListener("resize", scheduleUpdate);
+    for (const { element } of sections) observer.observe(element);
 
     return () => {
-      window.removeEventListener("scroll", scheduleUpdate);
-      window.removeEventListener("resize", scheduleUpdate);
-      if (frame) window.cancelAnimationFrame(frame);
+      observer.disconnect();
     };
   }, []);
 

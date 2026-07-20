@@ -21,6 +21,7 @@ export function ProfilePortrait({ name }: { name: string }) {
   const [isHolding, setIsHolding] = useState(false);
   const [isSmiling, setIsSmiling] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [shouldLoadSmile, setShouldLoadSmile] = useState(false);
   const swapTimer = useRef<number | null>(null);
   const finishTimer = useRef<number | null>(null);
 
@@ -42,6 +43,7 @@ export function ProfilePortrait({ name }: { name: string }) {
   const startHold = () => {
     if (isHolding || isSmiling || isTransitioning) return;
 
+    setShouldLoadSmile(true);
     setIsHolding(true);
   };
 
@@ -124,7 +126,7 @@ export function ProfilePortrait({ name }: { name: string }) {
         alt=""
         fill
         preload
-        unoptimized
+        quality={100}
         draggable={false}
         sizes="(min-width: 61rem) 11rem, (min-width: 40rem) 18vw, 8rem"
         style={{
@@ -136,24 +138,26 @@ export function ProfilePortrait({ name }: { name: string }) {
           transition: "opacity var(--dur-fast) var(--ease-out)",
         }}
       />
-      <Image
-        className="identity-portrait identity-portrait-smile"
-        src="/pp-smile.jpg"
-        alt=""
-        fill
-        loading="eager"
-        unoptimized
-        draggable={false}
-        sizes="(min-width: 61rem) 11rem, (min-width: 40rem) 18vw, 8rem"
-        style={{
-          objectFit: "cover",
-          objectPosition: "50% 46%",
-          opacity: isSmiling ? 1 : 0,
-          borderRadius: "calc(var(--radius-card) - 1px)",
-          pointerEvents: "none",
-          transition: "opacity var(--dur-fast) var(--ease-out)",
-        }}
-      />
+      {shouldLoadSmile ? (
+        <Image
+          className="identity-portrait identity-portrait-smile"
+          src="/pp-smile.jpg"
+          alt=""
+          fill
+          loading="eager"
+          quality={100}
+          draggable={false}
+          sizes="(min-width: 61rem) 11rem, (min-width: 40rem) 18vw, 8rem"
+          style={{
+            objectFit: "cover",
+            objectPosition: "50% 46%",
+            opacity: isSmiling ? 1 : 0,
+            borderRadius: "calc(var(--radius-card) - 1px)",
+            pointerEvents: "none",
+            transition: "opacity var(--dur-fast) var(--ease-out)",
+          }}
+        />
+      ) : null}
 
       <svg
         className="identity-portrait-progress"

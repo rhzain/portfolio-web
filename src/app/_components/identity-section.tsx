@@ -1,18 +1,42 @@
+import { ArrowDown, FileText, Mail } from "lucide-react";
+import { siGithub } from "simple-icons";
 import { identity, identityContacts } from "@/content/portfolio";
 import { ProfilePortrait } from "@/app/_components/profile-portrait";
 import { TwistingRibbon } from "@/components/ui/twisting-ribbon";
+
+const LINKEDIN_PATH =
+  "M20.451 20.45h-3.554v-5.568c0-1.328-.023-3.036-1.849-3.036-1.851 0-2.135 1.445-2.135 2.939v5.665H9.359V9h3.414v1.561h.048c.476-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.284zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.45H3.555V9h3.564z";
+
+function ContactIcon({ label }: { label: string }) {
+  if (label === "GitHub") {
+    return (
+      <svg viewBox="0 0 24 24" focusable="false">
+        <path d={siGithub.path} fill="currentColor" />
+      </svg>
+    );
+  }
+
+  if (label === "LinkedIn") {
+    return (
+      <svg viewBox="0 0 24 24" focusable="false">
+        <path d={LINKEDIN_PATH} fill="currentColor" />
+      </svg>
+    );
+  }
+
+  return label === "Email" ? <Mail /> : <FileText />;
+}
 
 export function IdentitySection() {
   return (
     <section id="top" className="identity" aria-labelledby="identity-title">
       <TwistingRibbon
         className="identity-ribbon"
-        segments={180}
+        segments={90}
         waveSpeed={0.01}
         waveAmplitude={0.72}
         twistCycles={5}
-        motionDuration={440}
-        continuous
+        motionDuration={4400}
         aria-hidden="true"
       />
 
@@ -38,7 +62,6 @@ export function IdentitySection() {
             {identityContacts.map((contact) => {
               const opensNewTab =
                 contact.href.startsWith("http") || contact.href.endsWith(".pdf");
-
               return (
                 <a
                   className="identity-contact identity-contact-link"
@@ -48,7 +71,7 @@ export function IdentitySection() {
                   target={opensNewTab ? "_blank" : undefined}
                 >
                   <span className="contact-mark" aria-hidden="true">
-                    {contact.mark}
+                    <ContactIcon label={contact.label} />
                   </span>
                   {contact.label}
                 </a>
@@ -60,7 +83,7 @@ export function IdentitySection() {
                 className="contact-mark identity-work-mark"
                 aria-hidden="true"
               >
-                ↓
+                <ArrowDown />
               </span>
               View projects
             </a>

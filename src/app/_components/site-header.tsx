@@ -61,7 +61,6 @@ export function SiteHeader() {
     : {
         opacity: 0,
         y: isDock ? 8 : -8,
-        filter: "blur(6px)",
       };
 
   return (
@@ -78,7 +77,6 @@ export function SiteHeader() {
           animate={{
             opacity: 1,
             y: 0,
-            filter: reduceMotion ? undefined : "blur(0px)",
           }}
           exit={{
             ...hiddenState,

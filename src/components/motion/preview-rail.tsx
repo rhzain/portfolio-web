@@ -73,7 +73,7 @@ export function PreviewRail({
   const highlightedId = displayedId || selectedId;
   const highlightedIndex = items.findIndex((item) => item.id === highlightedId);
   const rowTemplate = items.length
-    ? `repeat(${items.length}, 1.25rem)`
+    ? `repeat(${items.length}, 2.75rem)`
     : undefined;
   const isHorizontal = orientation === "horizontal";
 
@@ -171,8 +171,8 @@ export function PreviewRail({
               className={cn(
                 "relative flex text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                 isHorizontal
-                  ? "h-12 w-5 items-end justify-center"
-                  : "h-5 w-12 items-center",
+                  ? "h-12 w-11 items-end justify-center"
+                  : "h-11 w-12 items-center",
               )}
             >
               <motion.span
@@ -199,19 +199,19 @@ export function PreviewRail({
             ? { gridTemplateColumns: rowTemplate }
             : { gridTemplateRows: rowTemplate }
         }
-        className={cn(
-          "pointer-events-none absolute z-50 grid",
-          isHorizontal
-            ? "top-1/2 left-1/2 h-5 w-fit max-w-full -translate-x-1/2 -translate-y-1/2 justify-center"
-            : "inset-y-0 right-4 left-16 content-center",
+          className={cn(
+            "pointer-events-none absolute z-50 grid",
+            isHorizontal
+              ? "top-1/2 left-1/2 h-11 w-fit max-w-full -translate-x-1/2 -translate-y-1/2 justify-center"
+              : "inset-y-0 right-4 left-16 content-center",
         )}
       >
         {items.map((item) => (
           <div
             key={item.id}
             className={cn(
-              "relative flex h-5 items-center",
-              isHorizontal ? "w-5 justify-center" : undefined,
+              "relative flex h-11 items-center",
+              isHorizontal ? "w-11 justify-center" : undefined,
             )}
           >
             {item.id === displayedId ? (
@@ -233,12 +233,12 @@ export function PreviewRail({
                       initial={
                         reduce
                           ? { opacity: 0 }
-                          : { opacity: 0, y: 4, filter: "blur(6px)" }
+                          : { opacity: 0, y: 4 }
                       }
                       animate={
                         reduce
                           ? { opacity: 1 }
-                          : { opacity: 1, y: 0, filter: "blur(0px)" }
+                          : { opacity: 1, y: 0 }
                       }
                       exit={
                         reduce
@@ -246,7 +246,6 @@ export function PreviewRail({
                           : {
                               opacity: 0,
                               y: -2,
-                              filter: "blur(4px)",
                               transition: {
                                 duration: 0.12,
                                 ease: EASE_OUT,

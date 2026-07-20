@@ -11,6 +11,12 @@
 html,
 body {
   overflow-x: clip;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
 }
 
 html {

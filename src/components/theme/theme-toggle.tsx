@@ -112,17 +112,17 @@ export function ThemeToggle({
         {mounted ? (
           <AnimatePresence initial={false} mode="popLayout">
             <motion.span
-              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+              animate={{ opacity: 1, scale: 1 }}
               className="theme-toggle-icon-motion"
               exit={
                 reduceMotion
                   ? undefined
-                  : { opacity: 0, scale: 0.7, filter: "blur(4px)" }
+                  : { opacity: 0, scale: 0.7 }
               }
               initial={
                 reduceMotion
                   ? false
-                  : { opacity: 0, scale: 0.7, filter: "blur(4px)" }
+                  : { opacity: 0, scale: 0.7 }
               }
               key={isDark ? "dark" : "light"}
               transition={{ duration: reduceMotion ? 0 : 0.18 }}

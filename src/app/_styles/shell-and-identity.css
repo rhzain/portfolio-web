@@ -33,7 +33,8 @@
 .identity-inner {
   display: grid;
   gap: var(--space-lg);
-  padding-block: calc(var(--space-2xl) + var(--space-xl)) var(--space-3xl);
+  padding-block: calc(var(--space-2xl) + var(--space-xl) + var(--space-xl))
+    var(--space-3xl);
 }
 
 .identity-ribbon {
@@ -254,6 +255,12 @@
   font-size: 0.6875rem;
   font-weight: 700;
   line-height: 1;
+}
+
+.contact-mark svg {
+  width: 0.875rem;
+  height: 0.875rem;
+  stroke-width: 1.8;
 }
 
 .identity-work-link {
