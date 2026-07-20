@@ -5,12 +5,51 @@
 }
 
 .identity {
+  position: relative;
+  isolation: isolate;
+}
+
+.identity::after {
+  position: absolute;
+  z-index: -1;
+  inset-block: 0;
+  inset-inline-start: 50%;
+  width: 100dvw;
+  background: color-mix(in oklab, var(--color-paper) 80%, transparent);
+  content: "";
+  pointer-events: none;
+  backdrop-filter: blur(0.2rem);
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #3F3F3F 23%,
+    black 50%,
+    #3F3F3F 77%,
+    transparent
+  );
+  transform: translateX(-50%);
+}
+
+.identity-inner {
   display: grid;
   gap: var(--space-lg);
   padding-block: var(--space-2xl) var(--space-3xl);
 }
 
+.identity-ribbon {
+  position: absolute;
+  z-index: -2;
+  inset-block: 0;
+  inset-inline-start: 50%;
+  width: 100dvw;
+  border-radius: 0;
+  opacity: 0.4;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
 .identity-mark {
+  position: relative;
   display: grid;
   width: clamp(8rem, 18vw, 11rem);
   aspect-ratio: 3 / 4;
@@ -27,6 +66,7 @@
 }
 
 .identity-copy {
+  position: relative;
   min-width: 0;
 }
 

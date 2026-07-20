@@ -1,5 +1,5 @@
-/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V4 */
-/* Hallmark · genre: modern-minimal · macrostructure: Long Document · design-system: DESIGN.md · designed-as-app · theme: studied-DNA (source: user-supplied image) · enrichment: none · nav: detached solid utility bar · footer: Ft2 · contrast: pass (40–41) · slop: pass (42–49) · mobile: pass (34, 49–57) */
+/* Hallmark · pre-emit critique: P3 H5 E4 S4 R5 V4 */
+/* Hallmark · genre: modern-minimal · macrostructure: Long Document · design-system: DESIGN.md · designed-as-app · theme: studied-DNA (source: user-supplied image) · enrichment: quiet monochrome canvas ribbon · nav: detached solid utility bar · footer: Ft2 · contrast: pass (40–41) · slop: user-directed exception (45) · mobile: pass (34, 49–57) */
 :root {
   color-scheme: light;
 
@@ -13,6 +13,12 @@
   --color-accent: oklch(22% 0.007 255);
   --color-accent-ink: oklch(98% 0.003 255);
   --color-focus: oklch(43% 0.012 255);
+  --color-ribbon-face: var(--color-ink);
+  --color-ribbon-fold-a: var(--color-ink-2);
+  --color-ribbon-fold-b: var(--color-muted);
+  --color-ribbon-fold-c: var(--color-rule);
+  --ribbon-edge-alpha: 0.08;
+  --ribbon-shadow-alpha: 0.035;
 
   --font-display: var(--font-geist-sans), ui-sans-serif, sans-serif;
   --font-body: var(--font-geist-sans), ui-sans-serif, sans-serif;

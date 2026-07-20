@@ -47,7 +47,7 @@
     width: min(calc(100% - 3rem), var(--content-max));
   }
 
-  .identity {
+  .identity-inner {
     grid-template-columns: auto minmax(0, 1fr);
     gap: var(--space-xl);
   }
