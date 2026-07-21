@@ -1,14 +1,31 @@
+"use client";
+
+import { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import Image from "next/image";
+import { Folder, ArrowLeft } from "lucide-react";
 import { projects } from "@/content/portfolio";
 import { SectionMarker } from "@/app/_components/section-marker";
 
 function ProjectCard({ project }: { project: (typeof projects)[number] }) {
   return (
-    <article
+    <motion.article
+      layout
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className={`project-card${project.featured ? " project-card-featured" : ""}`}
     >
       <figure className="project-media">
         {project.image ? (
-          <img src={project.image} alt={`Screenshot of ${project.title}`} loading="lazy" />
+          <Image 
+            src={project.image} 
+            alt={`Screenshot of ${project.title}`} 
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover"
+          />
         ) : (
           <>
             <span>{project.index} / Project capture</span>
@@ -52,11 +69,20 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
           </div>
         )}
       </div>
-    </article>
+    </motion.article>
   );
 }
 
 export function ProjectsSection() {
+  const [isCarousel, setIsCarousel] = useState(false);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollTo({ left: 0, behavior: "instant" });
+    }
+  }, [isCarousel]);
+
   return (
     <section
       id="projects"
@@ -64,28 +90,67 @@ export function ProjectsSection() {
       aria-labelledby="projects-title"
     >
       <SectionMarker index={4} />
-        <div className="projects-heading">
+      <div className="projects-heading">
+        <div className="projects-heading-text">
           <h2 id="projects-title">Projects</h2>
-          <p>Here are some of the projects I’ve worked on. Each one has expanded my knowledge and shaped how I approach building practical solutions.
+          <p>
+            Here are some of the projects I’ve worked on. Each one has expanded my knowledge and shaped how I approach building practical solutions.
           </p>
         </div>
+      </div>
 
-        <div className="project-grid">
-          {projects.slice(0, 3).map((project) => (
+      <motion.div 
+        ref={carouselRef}
+        layout
+        className={isCarousel ? "project-carousel" : "project-grid"}
+      >
+        <AnimatePresence mode="popLayout">
+          {(!isCarousel ? projects.slice(0, 3) : projects).map((project) => (
             <ProjectCard key={project.index} project={project} />
           ))}
-        </div>
 
-        <details className="project-index-list">
-          <summary>
-            View all projects <span>/{String(projects.length).padStart(2, "0")}</span>
-          </summary>
-          <div className="project-grid">
-            {projects.slice(3).map((project) => (
-              <ProjectCard key={project.index} project={project} />
-            ))}
-          </div>
-        </details>
-      </section>
+          {!isCarousel && (
+            <motion.button
+              layout
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              onClick={() => {
+                setIsCarousel(true);
+                document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="project-folder-card"
+              aria-label="View All Projects"
+            >
+              <Folder size={64} strokeWidth={1} />
+              <span>All Projects</span>
+            </motion.button>
+          )}
+
+          {isCarousel && (
+            <motion.button
+              layout
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              onClick={() => {
+                if (carouselRef.current) {
+                  carouselRef.current.scrollTo({ left: 0, behavior: "instant" });
+                }
+                setIsCarousel(false);
+                document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className={`project-folder-card ${projects.length % 2 === 0 ? "span-2-rows" : ""}`}
+              aria-label="Collapse projects"
+            >
+              <ArrowLeft size={64} strokeWidth={1} />
+              <span>Collapse</span>
+            </motion.button>
+          )}
+        </AnimatePresence>
+      </motion.div>
+    </section>
   );
 }

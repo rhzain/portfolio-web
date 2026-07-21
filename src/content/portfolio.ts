@@ -228,67 +228,39 @@ export type Project = {
 export const projects: readonly Project[] = [
   {
     index: "01",
-    title: "LearnMate AI",
-    year: "2025",
-    github: "https://github.com/rhzain/project-uas-ai",
-    link: "",
-    image: "/learnmate-ai.jpg",
-    purpose:
-      "An educational RAG chatbot that grounds LLM answers in specific lecture materials.",
-    contribution:
-      "AI Engineer · Fine-tuned semantic retrieval with a custom triplet dataset and built a two-stage retrieval pipeline with vector search and reranking.",
-    tools: "Python · Sentence Transformers · FAISS · RAG",
-    featured: true,
-  },
-  {
-    index: "02",
     title: "NutriGrow",
     year: "2026",
     github: "https://github.com/nutrigrow/backend",
     link: "nutrigrow.me",
-    image: "/nutrigrow.jpg",
+    image: "/nutrigrow.png",
     purpose:
-      "An AI-powered stunting classification platform for child growth monitoring and health assessment.",
+      "An digital health platform aligned with SDG 2.2 to end all forms of malnutrition.",
     contribution:
-      "AI & Backend Engineer · Built core backend services for consultations, health logs, and recommendations; ran usability testing with mothers and teenagers.",
+      "AI & Backend Engineer · Developed core backend services for consultations, health logs, and recommendations; ran usability testing with mothers and teenagers. Built the stunting classification model and integrated it into the backend.",
     tools: "Machine learning · Backend services · Usability testing",
     featured: false,
   },
   {
-    index: "03",
+    index: "02",
     title: "PasarAjaibAR",
-    year: "202x",
+    year: "2026",
     github: "AR-101",
     link: "",
-    image: "/pasar-ajaib-ar.jpg",
+    image: "/pasar-ajaib-ar.png",
     purpose:
-      "An educational mobile AR game for second- and third-grade students, created to support hands-on learning.",
+      "A math and literacy educational mobile AR game for second- and third-grade students, created to support hands-on learning.",
     contribution:
       "Unity AR Engineer · Implemented plane detection, spatial 3D interactions, and child-friendly touch controls.",
     tools: "Unity · ARCore · AR Foundation · C#",
     featured: false,
   },
   {
-    index: "04",
-    title: "PlantVeillance",
-    year: "2025",
-    github: "https://github.com/Lukas166/PlantVeillance",
-    link: "",
-    image: "/plantveillance.jpg",
-    purpose:
-      "A real-time sensor monitoring system that captures, stores, and visualizes telemetry data.",
-    contribution:
-      "IoT Engineer · Built the ESP32-to-dashboard data pipeline and advanced to Stage 3 after a Top 1 Stage 2 evaluation.",
-    tools: "ESP32 · MQTT/HTTP · MongoDB · Flask · Streamlit",
-    featured: false,
-  },
-  {
-    index: "05",
+    index: "03",
     title: "CuanSelor",
     year: "2026",
     github: "https://github.com/FarhanGhifari/CuanSelor",
     link: "cuanselor.my.id",
-    image: "/cuanselor.jpg",
+    image: "/cuanselor.png",
     purpose:
       "A fintech financial-advisor capstone with financial-profile prediction and LLM-powered advisory exploration.",
     contribution:
@@ -297,31 +269,59 @@ export const projects: readonly Project[] = [
     featured: false,
   },
   {
-    index: "06",
-    title: "Practicum Attendance System",
-    year: "2024",
-    github: "https://github.com/praktikum-tiunpad-2023/project-pbo-2024-kelompok-a-10",
-    link: "",
-    image: "/attendance-system.jpg",
-    purpose:
-      "A desktop management system for laboratory attendance, student records, and course scheduling.",
-    contribution:
-      "Java Full-Stack Developer · Applied MVC, designed the relational data model, and implemented authentication, attendance, and scheduling workflows.",
-    tools: "Java · NetBeans · MVC · MySQL",
-    featured: false,
-  },
-  {
-    index: "07",
-    title: "medphoto.booth Media Pipeline",
+    index: "04",
+    title: "medphoto.booth Gallery",
     year: "2025",
     github: "https://github.com/rhzain/photobooth-gallery",
     link: "",
-    image: "/photobooth-gallery.jpg",
+    image: "/photobooth-gallery.png",
     purpose:
       "A real-time media pipeline for remote photo capture stations, image processing, GIF generation, and delivery.",
     contribution:
       "Software Developer · Co-developed multi-laptop synchronization, automated image processing, and SMTP-backed email delivery.",
     tools: "Node.js · Next.js · Sharp · Omggif · Nodemailer",
+    featured: false,
+  },
+  {
+    index: "05",
+    title: "LearnMate AI",
+    year: "2025",
+    github: "https://github.com/rhzain/project-uas-ai",
+    link: "",
+    image: "/learnmate-ai.png",
+    purpose:
+      "An educational RAG chatbot that grounds LLM answers in specific lecture materials.",
+    contribution:
+      "AI Engineer · Fine-tuned semantic retrieval with a custom triplet dataset and built a two-stage retrieval pipeline with vector search and reranking.",
+    tools: "Python · Sentence Transformers · FAISS · RAG",
+    featured: false,
+  },
+  {
+    index: "06",
+    title: "PlantVeillance",
+    year: "2025",
+    github: "https://github.com/Lukas166/PlantVeillance",
+    link: "",
+    image: "/plantveillance.png",
+    purpose:
+      "A real-time sensor monitoring system that captures, stores, and visualizes telemetry data.",
+    contribution:
+      "IoT Engineer · Built the ESP32-to-dashboard data pipeline and advanced to Stage 3 after a Top 1 Stage 2 evaluation.",
+    tools: "ESP32 · MQTT/HTTP · MongoDB · Flask · Streamlit",
+    featured: false,
+  },
+  {
+    index: "07",
+    title: "Practicum Attendance System",
+    year: "2024",
+    github: "https://github.com/praktikum-tiunpad-2023/project-pbo-2024-kelompok-a-10",
+    link: "",
+    image: "/attendance-system.png",
+    purpose:
+      "A desktop management system for laboratory attendance, student records, and course scheduling.",
+    contribution:
+      "Java Full-Stack Developer · Applied MVC, designed the relational data model, and implemented authentication, attendance, and scheduling workflows.",
+    tools: "Java · NetBeans · MVC · MySQL",
     featured: false,
   },
 ];
