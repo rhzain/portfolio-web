@@ -37,6 +37,14 @@ export function SectionProgressRail() {
   }, [isVisible]);
 
   useEffect(() => {
+    document.documentElement.dataset.readingSection = activeId;
+
+    return () => {
+      delete document.documentElement.dataset.readingSection;
+    };
+  }, [activeId]);
+
+  useEffect(() => {
     const sections = previewNavigation.flatMap((item) => {
       const element = document.getElementById(item.id);
       return element ? [{ id: item.id, element }] : [];

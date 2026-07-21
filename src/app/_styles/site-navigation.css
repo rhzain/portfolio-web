@@ -146,6 +146,9 @@
 }
 
 .nav-index summary {
+  position: absolute;
+  inset-block-start: var(--space-2xs);
+  inset-inline-start: 50%;
   gap: var(--space-2xs);
   padding-inline: var(--space-xs);
   color: var(--color-ink-2);
@@ -153,6 +156,7 @@
   font-size: var(--text-sm);
   font-weight: 650;
   list-style: none;
+  transform: translateX(-50%);
   transition:
     background-color var(--dur-fast) var(--ease-out),
     color var(--dur-fast) var(--ease-out);
@@ -283,4 +287,66 @@
 
 .utility-dock .brand {
   border-inline-end: 1px solid var(--color-rule);
+}
+
+.dock-progress {
+  display: none;
+}
+
+@media (max-width: 47.99rem) {
+  .utility-dock {
+    display: grid;
+    grid-template-columns: 4rem minmax(0, 1fr) 4rem;
+    width: min(100%, 15rem);
+  }
+
+  .utility-dock .brand {
+    grid-column: 1;
+    justify-content: center;
+    padding-inline: 0;
+    border-inline-end: 0;
+  }
+
+  .utility-dock .utility-actions {
+    grid-column: 3;
+    justify-self: center;
+    margin-inline-start: 0;
+  }
+
+  .dock-progress {
+    display: block;
+    min-width: 0;
+    overflow: hidden;
+    color: var(--color-ink-2);
+    font-size: var(--text-sm);
+    font-weight: 650;
+    line-height: 2.75rem;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .dock-index {
+    position: static;
+    display: block;
+    grid-column: 2;
+    min-width: 0;
+    border-inline: 1px solid var(--color-rule);
+  }
+
+  .dock-index .dock-progress {
+    position: static;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding-inline: 0;
+    line-height: normal;
+    transform: none;
+  }
+
+  .utility-dock .nav-index-panel {
+    inset-block-start: auto;
+    inset-block-end: calc(100% + var(--space-2xs));
+  }
 }
