@@ -9,6 +9,16 @@
     gap: var(--space-xl);
   }
 
+  .identity-copy {
+    position: relative;
+    display: block;
+  }
+
+  .identity h1 {
+    grid-column: auto;
+    align-self: auto;
+  }
+
   .identity-facts {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

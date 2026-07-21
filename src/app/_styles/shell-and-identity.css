@@ -40,9 +40,20 @@
 
 .identity-inner {
   display: grid;
-  gap: var(--space-lg);
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: var(--space-md);
   padding-block: calc(var(--space-2xl) + var(--space-xl) + var(--space-xl))
     var(--space-3xl);
+}
+
+.identity-inner > .identity-mark,
+.identity h1 {
+  grid-row: 1;
+}
+
+.identity h1 {
+  grid-column: 2;
+  align-self: center;
 }
 
 .identity-ribbon {
@@ -150,8 +161,14 @@
 }
 
 .identity-copy {
-  position: relative;
+  display: contents;
   min-width: 0;
+}
+
+.identity-lede,
+.identity-facts,
+.identity-links {
+  grid-column: 1 / -1;
 }
 
 .identity-role {
@@ -192,7 +209,9 @@
 
 .identity-facts {
   display: grid;
-  gap: var(--space-sm);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--space-md);
+  row-gap: var(--space-sm);
   max-width: 40rem;
   margin: var(--space-lg) 0 0;
 }
