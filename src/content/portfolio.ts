@@ -244,7 +244,7 @@ export const projects: readonly Project[] = [
     index: "02",
     title: "PasarAjaibAR",
     year: "2026",
-    github: "AR-101",
+    github: "https://github.com/rhzain/AR-101",
     link: "",
     image: "/pasar-ajaib-ar.png",
     purpose:
