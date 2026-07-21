@@ -14,6 +14,10 @@
   --color-accent-ink: oklch(98% 0.003 255);
   --color-focus: oklch(43% 0.012 255);
   --color-image-flash: oklch(100% 0 0);
+  --color-gradient-light: oklch(100% 0 0);
+  --color-gradient-dark: oklch(85% 0.006 255);
+  --gradient-noise-opacity: 1;
+  --gradient-noise-size: 140px;
   --color-ribbon-face: var(--color-ink);
   --color-ribbon-fold-a: var(--color-ink-2);
   --color-ribbon-fold-b: var(--color-muted);
@@ -77,6 +81,9 @@
     --color-accent: oklch(93% 0.006 255);
     --color-accent-ink: oklch(14% 0.006 255);
     --color-focus: oklch(78% 0.012 255);
+    --color-gradient-light: oklch(20% 0.008 255);
+    --color-gradient-dark: oklch(0% 0 255);
+    --gradient-noise-opacity: 1;
     --shadow-floating: 0 var(--space-2xs) var(--space-md)
       color-mix(in oklab, var(--color-paper) 60%, transparent);
   }
@@ -95,6 +102,9 @@
   --color-accent: oklch(93% 0.006 255);
   --color-accent-ink: oklch(14% 0.006 255);
   --color-focus: oklch(78% 0.012 255);
+  --color-gradient-light: oklch(26% 0.008 255);
+  --color-gradient-dark: oklch(7% 0.005 255);
+  --gradient-noise-opacity: 1;
   --shadow-floating: 0 var(--space-2xs) var(--space-md)
     color-mix(in oklab, var(--color-paper) 60%, transparent);
 }

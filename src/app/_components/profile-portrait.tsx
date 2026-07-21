@@ -126,7 +126,7 @@ export function ProfilePortrait({ name }: { name: string }) {
         alt=""
         fill
         preload
-        quality={100}
+        quality={85}
         draggable={false}
         sizes="(min-width: 61rem) 11rem, (min-width: 40rem) 18vw, 8rem"
         style={{
@@ -145,7 +145,7 @@ export function ProfilePortrait({ name }: { name: string }) {
           alt=""
           fill
           loading="eager"
-          quality={100}
+          quality={85}
           draggable={false}
           sizes="(min-width: 61rem) 11rem, (min-width: 40rem) 18vw, 8rem"
           style={{

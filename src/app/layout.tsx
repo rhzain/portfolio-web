@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { AgentationToolbar } from "@/components/dev/agentation-toolbar";
 import { ThemeProvider } from "@/components/theme/theme-provider";
+import { GradientBackground } from "@/components/animate-ui/components/backgrounds/gradient";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -31,9 +32,17 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col bg-transparent">
         <ThemeProvider>
-          {children}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none fixed inset-0 z-0"
+          >
+            <GradientBackground />
+          </div>
+          <div className="relative z-10 flex min-h-full flex-col">
+            {children}
+          </div>
           <AgentationToolbar />
         </ThemeProvider>
       </body>

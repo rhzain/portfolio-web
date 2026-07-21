@@ -12,21 +12,29 @@
 .identity::after {
   position: absolute;
   z-index: -1;
-  inset-block: 0;
+  inset-block: calc(var(--space-2xl) * -1);
   inset-inline-start: 50%;
   width: 100dvw;
-  background: color-mix(in oklab, var(--color-paper) 80%, transparent);
+  background: color-mix(in oklab, var(--color-paper) 4%, transparent);
+  backdrop-filter: blur(0.2rem);
   content: "";
   pointer-events: none;
-  backdrop-filter: blur(0.2rem);
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    #3F3F3F 23%,
-    black 50%,
-    #3F3F3F 77%,
-    transparent
-  );
+  mask-image:
+    linear-gradient(
+      to right,
+      transparent,
+      black 23%,
+      black 77%,
+      transparent
+    ),
+    linear-gradient(
+      to bottom,
+      transparent,
+      black var(--space-2xl),
+      black calc(100% - var(--space-2xl)),
+      transparent
+    );
+  mask-composite: intersect;
   transform: translateX(-50%);
 }
 
@@ -38,6 +46,8 @@
 }
 
 .identity-ribbon {
+  --ribbon-mask-center-opacity: 35%;
+
   position: absolute;
   z-index: -2;
   inset-block: 0;
@@ -46,6 +56,24 @@
   border-radius: 0;
   opacity: 0.4;
   pointer-events: none;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    black 0%,
+    black 18%,
+    rgb(0 0 0 / var(--ribbon-mask-center-opacity)) 40%,
+    rgb(0 0 0 / var(--ribbon-mask-center-opacity)) 60%,
+    black 82%,
+    black 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    black 0%,
+    black 18%,
+    rgb(0 0 0 / var(--ribbon-mask-center-opacity)) 40%,
+    rgb(0 0 0 / var(--ribbon-mask-center-opacity)) 60%,
+    black 82%,
+    black 100%
+  );
   transform: translateX(-50%);
 }
 
