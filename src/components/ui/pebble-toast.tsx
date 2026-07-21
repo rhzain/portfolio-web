@@ -21,9 +21,9 @@ type ToastPosition =
     | "bottom-right"
 
 const POSITION_CLASSES: Record<ToastPosition, string> = {
-    "top-left": "top-6 left-6",
+    "top-left": "top-10 left-6",
     "top-center": "top-6 left-1/2 -translate-x-1/2",
-    "top-right": "top-6 right-6",
+    "top-right": "top-10 right-6",
     "bottom-left": "bottom-6 left-6",
     "bottom-center": "bottom-6 left-1/2 -translate-x-1/2",
     "bottom-right": "bottom-6 right-6",
@@ -83,8 +83,8 @@ const ToastStack = memo(
 
         const displayedItems = useMemo(() => [...items].reverse(), [items])
         const positionClass = POSITION_CLASSES[position] || POSITION_CLASSES["bottom-right"]
-        const isLeftAligned = position.includes("left")
-        const initialX = isLeftAligned ? -12 : 12
+        const isTopAligned = position.includes("top")
+        const initialY = isTopAligned ? -20 : 20
 
         return (
             <div className={`fixed z-[9999] pointer-events-none ${positionClass}`}>
@@ -113,10 +113,11 @@ const ToastStack = memo(
                                     onAnimationComplete={() => isExpanded && setFullyExpandedId(item.id)}
                                     initial={{
                                         width: 40,
-                                        scale: 1,
+                                        scale: 0.9,
                                         marginLeft: isFirst ? 0 : -24,
                                         opacity: 0,
-                                        x: initialX,
+                                        y: initialY,
+                                        x: 0,
                                         filter: "blur(2px)",
                                     }}
                                     animate={{
@@ -124,6 +125,7 @@ const ToastStack = memo(
                                         scale: isExpanded ? 1.05 : 1,
                                         marginLeft: isFirst ? 0 : marginLeft,
                                         opacity: 1,
+                                        y: 0,
                                         x: 0,
                                         filter: "blur(0px)",
                                     }}
@@ -132,7 +134,8 @@ const ToastStack = memo(
                                         scale: 0.8,
                                         opacity: 0,
                                         marginLeft: 0,
-                                        x: initialX,
+                                        y: initialY,
+                                        x: 0,
                                         filter: "blur(2px)",
                                     }}
                                     transition={{
@@ -143,7 +146,7 @@ const ToastStack = memo(
                                         opacity: { ease: "easeOut", duration: 0.3 },
                                     }}
                                     style={{ zIndex: isHovered ? 50 : idx + 1 }}
-                                    className="relative h-10 p-0.75 pr-3 flex items-center justify-start border border-[var(--color-rule)] bg-[var(--color-paper)] rounded-full cursor-pointer overflow-hidden shrink-0 select-none shadow-[var(--shadow-floating)] hover:shadow-lg transition-shadow duration-300 pointer-events-auto"
+                                    className="relative h-10 p-0.75 pr-3 flex items-center justify-start border border-white/10 bg-[var(--color-ink)] rounded-full cursor-pointer overflow-hidden shrink-0 select-none shadow-[var(--shadow-floating)] hover:shadow-2xl transition-shadow duration-300 pointer-events-auto"
                                 >
                                     <div className="relative w-8 h-8 border border-white/10 rounded-full overflow-hidden shrink-0 group/avatar shadow-inner cursor-pointer">
                                         <AnimatePresence mode="popLayout" initial={false}>
@@ -212,11 +215,11 @@ const ToastStack = memo(
                                                     exit={{ opacity: 0, filter: "blur(2px)", y: 4, x: -4 }}
                                                     transition={{ duration: 0.2, ease: "easeOut" }}
                                                 >
-                                                    <p className="text-[var(--color-ink)] text-[13px] font-medium leading-none">
+                                                    <p className="text-[var(--color-paper)] text-[13px] font-medium leading-none">
                                                         {getTitle(item)}
                                                     </p>
                                                     {getDescription(item) && (
-                                                        <p className="text-[var(--color-ink-2)] text-[10px] font-normal leading-tight mt-0.5 line-clamp-1">
+                                                        <p className="text-[var(--color-paper-2)] text-[10px] font-normal leading-tight mt-0.5 line-clamp-1">
                                                             {getDescription(item)}
                                                         </p>
                                                     )}
@@ -249,8 +252,8 @@ const ToastStack = memo(
 ToastStack.displayName = "ToastStack"
 
 const Toaster = ({
-    duration = 6000,
-    position = "bottom-right",
+    duration = 10000,
+    position = "top-center",
     ...props
 }: ToasterProps) => {
     const { theme = "system" } = useTheme()
