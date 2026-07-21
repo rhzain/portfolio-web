@@ -46,9 +46,29 @@
     var(--space-3xl);
 }
 
-.identity-inner > .identity-mark,
+.identity-inner > .identity-portrait-container,
 .identity h1 {
   grid-row: 1;
+}
+
+.identity-portrait-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-md);
+  position: relative;
+}
+
+.lock-in-btn {
+  position: absolute;
+  bottom: calc(100% + 1rem);
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  justify-content: center;
+  padding-inline: var(--space-sm);
+  cursor: pointer;
+  background: var(--color-paper);
 }
 
 .identity h1 {
@@ -258,6 +278,7 @@
 
 .identity-contact {
   border: 1px dashed var(--color-rule);
+  background: var(--color-paper);
   color: var(--color-ink-2);
 }
 

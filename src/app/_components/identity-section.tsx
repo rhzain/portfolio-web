@@ -1,3 +1,8 @@
+"use client";
+
+import { useState, useRef } from "react";
+import { motion } from "motion/react";
+import type { ProfilePortraitHandle } from "@/app/_components/profile-portrait";
 import { ArrowDown, FileText, Mail } from "lucide-react";
 import { siGithub } from "simple-icons";
 import { identity, identityContacts } from "@/content/portfolio";
@@ -10,15 +15,18 @@ const LINKEDIN_PATH =
 function ContactIcon({ label }: { label: string }) {
   if (label === "GitHub") {
     return (
-      <svg viewBox="0 0 24 24" focusable="false">
-        <path d={siGithub.path} fill="currentColor" />
+      <svg viewBox="0 0 24 24" focusable="false" style={{ strokeWidth: 0 }}>
+        {/* Scale down to 90% and shift right to visually center the asymmetrical cat head */}
+        <g transform="translate(1.8, 1.2) scale(0.9)">
+          <path d={siGithub.path} fill="currentColor" />
+        </g>
       </svg>
     );
   }
 
   if (label === "LinkedIn") {
     return (
-      <svg viewBox="0 0 24 24" focusable="false">
+      <svg viewBox="0 0 24 24" focusable="false" style={{ strokeWidth: 0 }}>
         <path d={LINKEDIN_PATH} fill="currentColor" />
       </svg>
     );
@@ -28,6 +36,9 @@ function ContactIcon({ label }: { label: string }) {
 }
 
 export function IdentitySection() {
+  const [showLockIn, setShowLockIn] = useState(false);
+  const portraitRef = useRef<ProfilePortraitHandle>(null);
+
   return (
     <section id="top" className="identity" aria-labelledby="identity-title">
       <TwistingRibbon
@@ -41,7 +52,22 @@ export function IdentitySection() {
       />
 
       <div className="identity-inner">
-        <ProfilePortrait name={identity.name} />
+        <div className="identity-portrait-container">
+          <ProfilePortrait ref={portraitRef} name={identity.name} onSmile={() => setShowLockIn(true)} />
+          {showLockIn && (
+            <motion.button 
+              onClick={() => {
+                portraitRef.current?.reset();
+                setShowLockIn(false);
+              }}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="identity-contact identity-contact-link lock-in-btn"
+            >
+              Let&apos;s lock in 🤓
+            </motion.button>
+          )}
+        </div>
 
         <div className="identity-copy">
           <h1 id="identity-title">{identity.name}</h1>

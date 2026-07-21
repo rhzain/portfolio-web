@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useMemo, memo } from "react"
+import { useState, useMemo, memo } from "react"
 import { useTheme } from "next-themes"
 import {
     Toaster as Sonner,
@@ -78,12 +78,8 @@ const ToastStack = memo(
         const [hoveredId, setHoveredId] = useState<number | string | null>(null)
         const [fullyExpandedId, setFullyExpandedId] = useState<number | string | null>(null)
 
-        useEffect(() => {
-            if (hoveredId !== null && !items.some((t) => t.id === hoveredId)) {
-                setHoveredId(null)
-                setFullyExpandedId(null)
-            }
-        }, [items, hoveredId])
+        const actualHoveredId = (hoveredId !== null && items.some((t) => t.id === hoveredId)) ? hoveredId : null
+        const actualFullyExpandedId = actualHoveredId !== null ? fullyExpandedId : null
 
         const displayedItems = useMemo(() => [...items].reverse(), [items])
         const positionClass = POSITION_CLASSES[position] || POSITION_CLASSES["bottom-right"]
@@ -96,11 +92,11 @@ const ToastStack = memo(
                     <AnimatePresence initial={false}>
                         {displayedItems.map((item, idx) => {
                             const isFirst = idx === 0
-                            const isHovered = hoveredId === item.id
-                            const isExpanded = hoveredId !== null ? isHovered : idx === displayedItems.length - 1
-                            const isFullyExpanded = fullyExpandedId === item.id
+                            const isHovered = actualHoveredId === item.id
+                            const isExpanded = actualHoveredId !== null ? isHovered : idx === displayedItems.length - 1
+                            const isFullyExpanded = actualFullyExpandedId === item.id
 
-                            const hoveredIndex = displayedItems.findIndex((i) => i.id === hoveredId)
+                            const hoveredIndex = displayedItems.findIndex((i) => i.id === actualHoveredId)
                             const isRightOfHovered = hoveredIndex !== -1 && idx === hoveredIndex + 1
 
                             const marginLeft = isHovered || isRightOfHovered ? 6 : -12
@@ -249,6 +245,8 @@ const ToastStack = memo(
             )
         })
 )
+
+ToastStack.displayName = "ToastStack"
 
 const Toaster = ({
     duration = 6000,

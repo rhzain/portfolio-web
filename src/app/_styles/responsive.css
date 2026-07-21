@@ -14,6 +14,11 @@
     display: block;
   }
 
+  .lock-in-btn {
+    position: static;
+    width: 100%;
+  }
+
   .identity h1 {
     grid-column: auto;
     align-self: auto;

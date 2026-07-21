@@ -120,7 +120,7 @@ export function ProjectsSection() {
               onClick={() => {
                 setIsCarousel(true);
                 document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
-                toast("All projects opened!", {
+                toast("All projects are opened!", {
                   description: "Scroll to the left to view all projects"
                 });
               }}

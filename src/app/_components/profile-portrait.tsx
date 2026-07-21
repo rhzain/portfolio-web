@@ -1,8 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import confetti from "canvas-confetti";
 import { motion, useReducedMotion } from "motion/react";
 import {
+  forwardRef,
+  useImperativeHandle,
   useEffect,
   useRef,
   useState,
@@ -16,12 +19,18 @@ const TRANSITION_DURATION = 0.36;
 const REDUCED_TRANSITION_DURATION = 0.15;
 const TRACE_PATH_LENGTH = 1350.262;
 
-export function ProfilePortrait({ name }: { name: string }) {
+export type ProfilePortraitHandle = {
+  reset: () => void;
+};
+
+export const ProfilePortrait = forwardRef<ProfilePortraitHandle, { name: string; onSmile?: () => void }>(
+  ({ name, onSmile }, ref) => {
   const reduceMotion = useReducedMotion();
   const [isHolding, setIsHolding] = useState(false);
   const [isSmiling, setIsSmiling] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [shouldLoadSmile, setShouldLoadSmile] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const swapTimer = useRef<number | null>(null);
   const finishTimer = useRef<number | null>(null);
 
@@ -35,6 +44,25 @@ export function ProfilePortrait({ name }: { name: string }) {
       }
     };
   }, []);
+
+  useImperativeHandle(ref, () => ({
+    reset: () => {
+      if (!isSmiling) return;
+      const transitionDur = reduceMotion ? REDUCED_TRANSITION_DURATION : TRANSITION_DURATION;
+      
+      setIsTransitioning(true);
+
+      swapTimer.current = window.setTimeout(() => {
+        swapTimer.current = null;
+        setIsSmiling(false);
+      }, transitionDur * 450);
+
+      finishTimer.current = window.setTimeout(() => {
+        finishTimer.current = null;
+        setIsTransitioning(false);
+      }, transitionDur * 1000);
+    }
+  }));
 
   const cancelHold = () => {
     setIsHolding(false);
@@ -60,6 +88,25 @@ export function ProfilePortrait({ name }: { name: string }) {
     swapTimer.current = window.setTimeout(() => {
       swapTimer.current = null;
       setIsSmiling(true);
+      if (onSmile) onSmile();
+      if (!reduceMotion) {
+        let originX = 0.5;
+        let originY = 0.6;
+        if (buttonRef.current) {
+          const rect = buttonRef.current.getBoundingClientRect();
+          originX = (rect.left + rect.width / 2) / window.innerWidth;
+          originY = (rect.top + rect.height) / window.innerHeight;
+        }
+
+        confetti({
+          particleCount: 80,
+          spread: 180,
+          angle: 270,
+          origin: { x: originX, y: originY },
+          startVelocity: 25,
+          gravity: 0.8,
+        });
+      }
     }, transitionDuration * 450);
 
     finishTimer.current = window.setTimeout(() => {
@@ -101,6 +148,7 @@ export function ProfilePortrait({ name }: { name: string }) {
 
   return (
     <button
+      ref={buttonRef}
       type="button"
       className="identity-mark"
       aria-label={
@@ -233,4 +281,5 @@ export function ProfilePortrait({ name }: { name: string }) {
       </span>
     </button>
   );
-}
+});
+ProfilePortrait.displayName = "ProfilePortrait";
