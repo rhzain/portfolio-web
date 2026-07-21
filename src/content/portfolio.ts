@@ -212,31 +212,116 @@ export const stack = [
   },
 ] as const;
 
-export const projects = [
+export type Project = {
+  index: string;
+  title: string;
+  year?: string;
+  github?: string;
+  link?: string;
+  image?: string;
+  purpose: string;
+  contribution: string;
+  tools: string;
+  featured: boolean;
+};
+
+export const projects: readonly Project[] = [
   {
     index: "01",
-    title: "Add your strongest project",
+    title: "LearnMate AI",
+    year: "2025",
+    github: "https://github.com/rhzain/project-uas-ai",
+    link: "",
+    image: "/learnmate-ai.jpg",
     purpose:
-      "One sentence describing the product, its audience, and the problem it addresses.",
-    contribution: "Your role and most important contribution",
-    tools: "Primary technologies",
+      "An educational RAG chatbot that grounds LLM answers in specific lecture materials.",
+    contribution:
+      "AI Engineer · Fine-tuned semantic retrieval with a custom triplet dataset and built a two-stage retrieval pipeline with vector search and reranking.",
+    tools: "Python · Sentence Transformers · FAISS · RAG",
     featured: true,
   },
   {
     index: "02",
-    title: "Add a second project",
-    purpose: "Explain why this project exists and what makes it worth examining.",
-    contribution: "Your role and contribution",
-    tools: "Primary technologies",
+    title: "NutriGrow",
+    year: "2026",
+    github: "https://github.com/nutrigrow/backend",
+    link: "nutrigrow.me",
+    image: "/nutrigrow.jpg",
+    purpose:
+      "An AI-powered stunting classification platform for child growth monitoring and health assessment.",
+    contribution:
+      "AI & Backend Engineer · Built core backend services for consultations, health logs, and recommendations; ran usability testing with mothers and teenagers.",
+    tools: "Machine learning · Backend services · Usability testing",
     featured: false,
   },
   {
     index: "03",
-    title: "Add a third project",
+    title: "PasarAjaibAR",
+    year: "202x",
+    github: "AR-101",
+    link: "",
+    image: "/pasar-ajaib-ar.jpg",
     purpose:
-      "Use a different kind of work here to show range without diluting the portfolio.",
-    contribution: "Your role and contribution",
-    tools: "Primary technologies",
+      "An educational mobile AR game for second- and third-grade students, created to support hands-on learning.",
+    contribution:
+      "Unity AR Engineer · Implemented plane detection, spatial 3D interactions, and child-friendly touch controls.",
+    tools: "Unity · ARCore · AR Foundation · C#",
+    featured: false,
+  },
+  {
+    index: "04",
+    title: "PlantVeillance",
+    year: "2025",
+    github: "https://github.com/Lukas166/PlantVeillance",
+    link: "",
+    image: "/plantveillance.jpg",
+    purpose:
+      "A real-time sensor monitoring system that captures, stores, and visualizes telemetry data.",
+    contribution:
+      "IoT Engineer · Built the ESP32-to-dashboard data pipeline and advanced to Stage 3 after a Top 1 Stage 2 evaluation.",
+    tools: "ESP32 · MQTT/HTTP · MongoDB · Flask · Streamlit",
+    featured: false,
+  },
+  {
+    index: "05",
+    title: "CuanSelor",
+    year: "2026",
+    github: "https://github.com/FarhanGhifari/CuanSelor",
+    link: "cuanselor.my.id",
+    image: "/cuanselor.jpg",
+    purpose:
+      "A fintech financial-advisor capstone with financial-profile prediction and LLM-powered advisory exploration.",
+    contribution:
+      "AI Engineer · Developed the risk profiling classification custom deep learning model using TensorFlow and integrate it into the backend.",
+    tools: "Deep Learning · TensorFlow · API Deployment",
+    featured: false,
+  },
+  {
+    index: "06",
+    title: "Practicum Attendance System",
+    year: "2024",
+    github: "https://github.com/praktikum-tiunpad-2023/project-pbo-2024-kelompok-a-10",
+    link: "",
+    image: "/attendance-system.jpg",
+    purpose:
+      "A desktop management system for laboratory attendance, student records, and course scheduling.",
+    contribution:
+      "Java Full-Stack Developer · Applied MVC, designed the relational data model, and implemented authentication, attendance, and scheduling workflows.",
+    tools: "Java · NetBeans · MVC · MySQL",
+    featured: false,
+  },
+  {
+    index: "07",
+    title: "medphoto.booth Media Pipeline",
+    year: "2025",
+    github: "https://github.com/rhzain/photobooth-gallery",
+    link: "",
+    image: "/photobooth-gallery.jpg",
+    purpose:
+      "A real-time media pipeline for remote photo capture stations, image processing, GIF generation, and delivery.",
+    contribution:
+      "Software Developer · Co-developed multi-laptop synchronization, automated image processing, and SMTP-backed email delivery.",
+    tools: "Node.js · Next.js · Sharp · Omggif · Nodemailer",
     featured: false,
   },
 ];
