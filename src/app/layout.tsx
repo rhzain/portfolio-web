@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { AgentationToolbar } from "@/components/dev/agentation-toolbar";
 import { ThemeProvider } from "@/components/theme/theme-provider";
+import { Toaster } from "@/components/ui/pebble-toast";
 import { GradientBackground } from "@/components/animate-ui/components/backgrounds/gradient";
 import "./globals.css";
 
@@ -44,6 +45,7 @@ export default function RootLayout({
             {children}
           </div>
           <AgentationToolbar />
+          <Toaster position="top-center" />
         </ThemeProvider>
       </body>
     </html>

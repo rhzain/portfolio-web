@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 @import "./_styles/theme.css";
 @import "./_styles/base.css";
 @import "./_styles/site-navigation.css";
@@ -7,7 +8,7 @@
 @import "./_styles/projects-contact-footer.css";
 @import "./_styles/responsive.css";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:is([data-theme="dark"] *));
 
 @theme inline {
   --color-sidebar-ring: var(--sidebar-ring);
@@ -85,7 +86,7 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
-.dark {
+[data-theme="dark"] {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);

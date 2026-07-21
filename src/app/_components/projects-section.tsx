@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
 import { Folder, ArrowLeft } from "lucide-react";
+import { toast } from "sonner";
 import { projects } from "@/content/portfolio";
 import { SectionMarker } from "@/app/_components/section-marker";
 
@@ -119,6 +120,9 @@ export function ProjectsSection() {
               onClick={() => {
                 setIsCarousel(true);
                 document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+                toast("All projects opened!", {
+                  description: "Scroll to the left to view all projects"
+                });
               }}
               className="project-folder-card"
               aria-label="View All Projects"
