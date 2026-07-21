@@ -91,7 +91,7 @@ const ToastStack = memo(
         const initialX = isLeftAligned ? -12 : 12
 
         return (
-            <div className={`fixed z-9999 pointer-events-none ${positionClass}`}>
+            <div className={`fixed z-[9999] pointer-events-none ${positionClass}`}>
                 <div className="flex flex-row items-center justify-center">
                     <AnimatePresence initial={false}>
                         {displayedItems.map((item, idx) => {
@@ -147,7 +147,7 @@ const ToastStack = memo(
                                         opacity: { ease: "easeOut", duration: 0.3 },
                                     }}
                                     style={{ zIndex: isHovered ? 50 : idx + 1 }}
-                                    className="relative h-10 p-0.75 pr-3 flex items-center justify-start border bg-card rounded-4xl cursor-pointer overflow-hidden shrink-0 select-none shadow-sm hover:shadow-lg transition-shadow duration-300 pointer-events-auto"
+                                    className="relative h-10 p-0.75 pr-3 flex items-center justify-start border border-[var(--color-rule)] bg-[var(--color-paper)] rounded-full cursor-pointer overflow-hidden shrink-0 select-none shadow-[var(--shadow-floating)] hover:shadow-lg transition-shadow duration-300 pointer-events-auto"
                                 >
                                     <div className="relative w-8 h-8 border border-white/10 rounded-full overflow-hidden shrink-0 group/avatar shadow-inner cursor-pointer">
                                         <AnimatePresence mode="popLayout" initial={false}>
@@ -194,9 +194,9 @@ const ToastStack = memo(
                                                     setFullyExpandedId(null)
                                                     toast.dismiss(item.id)
                                                 }}
-                                                className="absolute inset-0 bg-background/60 flex items-center justify-center cursor-pointer opacity-0 group-hover/avatar:opacity-100 transition-opacity duration-200 z-30"
+                                                className="absolute inset-0 bg-black/40 flex items-center justify-center cursor-pointer opacity-0 group-hover/avatar:opacity-100 transition-opacity duration-200 z-30"
                                             >
-                                                <X className="w-4 h-4 text-foreground/80 stroke-[2.5]" />
+                                                <X className="w-4 h-4 text-white stroke-[2.5]" />
                                             </div>
                                         )}
                                     </div>
@@ -216,11 +216,11 @@ const ToastStack = memo(
                                                     exit={{ opacity: 0, filter: "blur(2px)", y: 4, x: -4 }}
                                                     transition={{ duration: 0.2, ease: "easeOut" }}
                                                 >
-                                                    <p className="text-muted-foreground text-[13px] font-medium leading-none">
+                                                    <p className="text-[var(--color-ink)] text-[13px] font-medium leading-none">
                                                         {getTitle(item)}
                                                     </p>
                                                     {getDescription(item) && (
-                                                        <p className="text-muted-foreground text-[10px] font-normal leading-tight mt-0.5 line-clamp-1">
+                                                        <p className="text-[var(--color-ink-2)] text-[10px] font-normal leading-tight mt-0.5 line-clamp-1">
                                                             {getDescription(item)}
                                                         </p>
                                                     )}
