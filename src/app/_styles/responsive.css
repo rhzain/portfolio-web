@@ -116,15 +116,15 @@
   }
 
   .document-section {
-    padding-block: var(--space-3xl);
+    padding-block: var(--space-xl);
   }
 
   .about {
-    padding-block-end: var(--space-2xl);
+    padding-block-end: var(--space-xl);
   }
 
   .projects {
-    padding-block-end: var(--space-4xl);
+    padding-block-end: var(--space-xl);
   }
 }
 

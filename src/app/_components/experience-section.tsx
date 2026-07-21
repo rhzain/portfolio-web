@@ -1,4 +1,5 @@
 import { experienceGroups } from "@/content/portfolio";
+import { SectionMarker } from "@/app/_components/section-marker";
 
 export function ExperienceSection() {
   return (
@@ -7,6 +8,7 @@ export function ExperienceSection() {
       className="document-section experience"
       aria-labelledby="experience-title"
     >
+      <SectionMarker index={2} />
       <div className="experience-heading">
         <h2 id="experience-title">Experience</h2>
       </div>

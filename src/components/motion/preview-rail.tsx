@@ -152,6 +152,7 @@ export function PreviewRail({
               key={item.id}
               href={item.href}
               target={item.target}
+              data-section-index={String(index + 1).padStart(2, "0")}
               rel={
                 item.rel ??
                 (item.target === "_blank" ? "noreferrer noopener" : undefined)

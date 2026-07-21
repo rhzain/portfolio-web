@@ -1,4 +1,5 @@
 import { projects } from "@/content/portfolio";
+import { SectionMarker } from "@/app/_components/section-marker";
 
 export function ProjectsSection() {
   return (
@@ -7,6 +8,7 @@ export function ProjectsSection() {
       className="document-section projects"
       aria-labelledby="projects-title"
     >
+      <SectionMarker index={4} />
       <div className="projects-heading">
         <h2 id="projects-title">Selected projects</h2>
         <p className="content-slot">

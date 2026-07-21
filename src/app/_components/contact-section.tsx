@@ -1,8 +1,10 @@
 import { contact } from "@/content/portfolio";
+import { SectionMarker } from "@/app/_components/section-marker";
 
 export function ContactSection() {
   return (
     <section id="contact" className="contact" aria-labelledby="contact-title">
+      <SectionMarker index={5} />
       <div>
         <h2 id="contact-title">My Contact</h2>
         <p className="content-slot">{contact.introduction}</p>

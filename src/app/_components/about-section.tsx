@@ -1,8 +1,10 @@
 import { about } from "@/content/portfolio";
+import { SectionMarker } from "@/app/_components/section-marker";
 
 export function AboutSection() {
   return (
     <section id="about" className="document-section about" aria-labelledby="about-title">
+      <SectionMarker index={1} />
       <h2 id="about-title">About</h2>
       <div className="about-copy">
         {about.paragraphs.map((paragraph) => (

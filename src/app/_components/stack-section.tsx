@@ -35,6 +35,7 @@ import {
   siUnity,
 } from "simple-icons";
 import type { CSSProperties } from "react";
+import { SectionMarker } from "@/app/_components/section-marker";
 import { Tooltip } from "@/components/motion/tooltip";
 import { stack } from "@/content/portfolio";
 
@@ -121,6 +122,7 @@ const stackArtwork: Partial<
 export function StackSection() {
   return (
     <section id="stack" className="document-section stack" aria-labelledby="stack-title">
+      <SectionMarker index={3} />
       <h2 id="stack-title">Technical stack</h2>
       <dl className="stack-list">
         {stack.map((item) => (

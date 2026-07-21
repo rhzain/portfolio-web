@@ -1,6 +1,28 @@
 .document-section {
-  padding-block: var(--space-2xl);
-  border-top: 1px solid var(--color-rule);
+  padding-block: var(--space-xl);
+}
+
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin: 0 0 var(--space-md);
+}
+
+.section-divider::before {
+  width: 4.5rem;
+  height: 2px;
+  flex: 0 0 4.5rem;
+  background: var(--color-ink);
+  content: "";
+}
+
+.section-divider span {
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
 }
 
 .document-section h2,
@@ -41,6 +63,17 @@
 
 .section-progress-rail-track a .text-foreground {
   color: var(--color-ink);
+}
+
+.section-progress-rail-track a[aria-current="page"]::after {
+  position: absolute;
+  inset-inline-start: calc(100% + var(--space-2xs));
+  color: var(--color-ink);
+  content: attr(data-section-index);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
 }
 
 .section-progress-rail-track a:focus-visible {
