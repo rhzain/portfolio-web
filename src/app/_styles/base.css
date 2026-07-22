@@ -21,7 +21,7 @@ body::-webkit-scrollbar {
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--space-3xl) + var(--space-sm));
+  scroll-padding-top: 0;
   background: var(--color-paper);
 }
 

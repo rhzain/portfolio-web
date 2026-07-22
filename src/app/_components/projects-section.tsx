@@ -119,7 +119,7 @@ export function ProjectsSection() {
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               onClick={() => {
                 setIsCarousel(true);
-                document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+                document.getElementById("projects")?.scrollIntoView({ behavior: "smooth", block: "start" });
                 toast("All projects are opened!", {
                   description: "Scroll to the left to view all projects"
                 });
@@ -144,7 +144,7 @@ export function ProjectsSection() {
                   carouselRef.current.scrollTo({ left: 0, behavior: "instant" });
                 }
                 setIsCarousel(false);
-                document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+                document.getElementById("projects")?.scrollIntoView({ behavior: "smooth", block: "start" });
               }}
               className={`project-folder-card ${projects.length % 2 === 0 ? "span-2-rows" : ""}`}
               aria-label="Collapse projects"
