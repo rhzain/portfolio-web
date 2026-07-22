@@ -1,6 +1,5 @@
 "use client";
 
-import type { FocusEvent, KeyboardEvent, MouseEvent } from "react";
 import { useState, useSyncExternalStore } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
@@ -42,25 +41,7 @@ function getServerReadingSectionSnapshot() {
   return "";
 }
 
-function closeIndex(event: MouseEvent<HTMLAnchorElement>) {
-  event.currentTarget.closest("details")?.removeAttribute("open");
-}
 
-function closeIndexOnBlur(event: FocusEvent<HTMLDetailsElement>) {
-  if (
-    !event.relatedTarget ||
-    !event.currentTarget.contains(event.relatedTarget as Node)
-  ) {
-    event.currentTarget.open = false;
-  }
-}
-
-function closeIndexOnEscape(event: KeyboardEvent<HTMLDetailsElement>) {
-  if (event.key !== "Escape") return;
-
-  event.currentTarget.open = false;
-  event.currentTarget.querySelector("summary")?.focus();
-}
 
 function SectionMenu({
   dock = false,
@@ -74,7 +55,12 @@ function SectionMenu({
   return (
     <MorphPopover open={open} onOpenChange={setOpen}>
       <MorphPopoverTrigger className={dock ? "dock-index" : "nav-index"}>
-        <div className={dock ? "dock-progress" : "nav-index-summary"}>
+        <div
+          className={`${dock ? "dock-progress" : "nav-index-summary"}${
+            open ? " is-active" : ""
+          }`}
+          data-state={open ? "open" : "closed"}
+        >
           <span>{dock ? activeLabel : "Menu"}</span>
         </div>
       </MorphPopoverTrigger>
@@ -90,20 +76,30 @@ function SectionMenu({
             Portfolio index
           </p>
           <ol className="flex flex-col m-0 p-0 list-none divide-y divide-[var(--color-rule)] border-t border-[var(--color-rule)]">
-            {previewNavigation.map((item, index) => (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className="flex items-center gap-3 px-2 py-2 text-sm font-semibold text-[var(--color-ink-2)] hover:bg-[var(--color-paper-2)] hover:text-[var(--color-ink)] transition-colors"
-                >
-                  <span className="font-mono text-xs text-[var(--color-muted)]">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  {item.label}
-                </a>
-              </li>
-            ))}
+            {previewNavigation.map((item, index) => {
+              const isActive = item.label === activeLabel;
+              return (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    className={`flex items-center gap-3 px-2 py-2 text-sm font-semibold transition-colors ${
+                      isActive
+                        ? "bg-[var(--color-paper-2)] color-[var(--color-accent)] font-bold"
+                        : "text-[var(--color-ink-2)] hover:bg-[var(--color-paper-2)] hover:text-[var(--color-ink)]"
+                    }`}
+                  >
+                    <span className={`font-mono text-xs ${isActive ? "text-[var(--color-accent)]" : "text-[var(--color-muted)]"}`}>
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    {item.label}
+                    {isActive && (
+                      <span className="ml-auto w-1.5 h-1.5 rounded-full bg-[var(--color-accent)]" />
+                    )}
+                  </a>
+                </li>
+              );
+            })}
           </ol>
         </div>
       </MorphPopoverContent>

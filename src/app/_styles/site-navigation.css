@@ -161,7 +161,14 @@
   border-radius: var(--radius-pill);
   transition:
     background-color var(--dur-fast) var(--ease-out),
-    color var(--dur-fast) var(--ease-out);
+    color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+}
+
+.nav-index-summary.is-active,
+.dock-progress.is-active {
+  background: var(--color-paper-2);
+  color: var(--color-ink);
 }
 
 .nav-index summary::-webkit-details-marker {
@@ -337,14 +344,20 @@
   }
 
   .dock-index .dock-progress {
-    position: static;
+    position: relative;
     display: flex;
-    width: 100%;
+    width: auto;
+    margin-inline: var(--space-3xs);
+    padding-inline: var(--space-xs);
+    min-height: 2.25rem;
     align-items: center;
     justify-content: center;
-    padding-inline: 0;
+    border-radius: var(--radius-pill);
     line-height: normal;
     transform: none;
+    transition:
+      background-color var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out);
   }
 
   .utility-dock .nav-index-panel {
