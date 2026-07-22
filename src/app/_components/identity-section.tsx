@@ -9,7 +9,6 @@ import { identity, identityContacts } from "@/content/portfolio";
 import { ProfilePortrait } from "@/app/_components/profile-portrait";
 import { TwistingRibbon } from "@/components/ui/twisting-ribbon";
 import { Button } from "@/components/motion/button";
-import { TextReveal } from "@/components/motion/text-reveal";
 
 const MotionButton = motion.create(Button);
 
@@ -66,10 +65,11 @@ export function IdentitySection() {
                 portraitRef.current?.reset();
                 setShowLockIn(false);
               }}
-              variant="ghost"
+              variant="none"
+              size="none"
               ripple
               pressScale={0.93}
-              className="identity-contact identity-contact-link lock-in-btn !h-auto"
+              className="identity-contact identity-contact-link lock-in-btn"
             >
               Let&apos;s lock in 🤓
             </MotionButton>

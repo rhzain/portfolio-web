@@ -15,7 +15,8 @@
   }
 
   .lock-in-btn {
-    position: static;
+    position: relative;
+    bottom: auto;
     width: 100%;
   }
 

@@ -27,8 +27,8 @@ export interface RippleEffect {
 }
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "outline" | "ghost";
-  size?: "sm" | "md" | "lg" | "icon";
+  variant?: "primary" | "secondary" | "outline" | "ghost" | "none";
+  size?: "sm" | "md" | "lg" | "icon" | "none";
   pressScale?: number;
   ripple?: boolean;
   href?: string;
@@ -81,6 +81,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
       secondary: "bg-[var(--color-paper-2)] color-[var(--color-ink)] border border-[var(--color-rule)] shadow-sm hover:bg-[var(--color-paper-3)]",
       outline: "bg-transparent color-[var(--color-ink)] border border-[var(--color-rule)] hover:border-[var(--color-accent)] hover:color-[var(--color-accent)]",
       ghost: "bg-transparent color-[var(--color-ink-2)] border-transparent hover:bg-[var(--color-paper-2)] hover:color-[var(--color-ink)]",
+      none: "",
     };
 
     const sizeStyles = {
@@ -88,10 +89,13 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
       md: "h-10 px-4 text-sm gap-2 rounded-xl",
       lg: "h-12 px-6 text-base gap-2.5 rounded-2xl",
       icon: "h-10 w-10 p-0 items-center justify-center rounded-full shrink-0",
+      none: "",
     };
 
     const baseClass = cn(
-      "relative inline-flex items-center justify-center font-medium overflow-hidden select-none transition-colors outline-none cursor-pointer",
+      variant === "none"
+        ? "overflow-hidden cursor-pointer outline-none select-none transition-colors"
+        : "relative inline-flex items-center justify-center font-medium overflow-hidden select-none transition-colors outline-none cursor-pointer",
       variantStyles[variant],
       sizeStyles[size],
       className
