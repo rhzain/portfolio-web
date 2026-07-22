@@ -1,11 +1,16 @@
 "use client";
 
 import type { FocusEvent, KeyboardEvent, MouseEvent } from "react";
-import { useSyncExternalStore } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { identity, previewNavigation } from "@/content/portfolio";
 import { EASE_IN, EASE_OUT } from "@/lib/ease";
+import {
+  MorphPopover,
+  MorphPopoverTrigger,
+  MorphPopoverContent,
+} from "@/components/motion/popover-morph";
 
 const ENTER_TRANSITION = { duration: 0.3, ease: EASE_OUT } as const;
 const EXIT_TRANSITION = { duration: 0.2, ease: EASE_IN } as const;
@@ -64,29 +69,45 @@ function SectionMenu({
   dock?: boolean;
   activeLabel?: string;
 }) {
+  const [open, setOpen] = useState(false);
+
   return (
-    <details
-      className={`nav-index${dock ? " dock-index" : ""}`}
-      onBlur={closeIndexOnBlur}
-      onKeyDown={closeIndexOnEscape}
-    >
-      <summary className={dock ? "dock-progress" : undefined}>
-        <span>{dock ? activeLabel : "Menu"}</span>
-      </summary>
-      <div className="nav-index-panel">
-        <p>Portfolio index</p>
-        <ol>
-          {previewNavigation.map((item, index) => (
-            <li key={item.href}>
-              <a href={item.href} onClick={closeIndex}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                {item.label}
-              </a>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </details>
+    <MorphPopover open={open} onOpenChange={setOpen}>
+      <MorphPopoverTrigger className={dock ? "dock-index" : "nav-index"}>
+        <div className={dock ? "dock-progress" : "nav-index-summary"}>
+          <span>{dock ? activeLabel : "Menu"}</span>
+        </div>
+      </MorphPopoverTrigger>
+
+      <MorphPopoverContent
+        side={dock ? "top" : "bottom"}
+        align="center"
+        sideOffset={dock ? 38 : 22}
+        className="w-56 p-2"
+      >
+        <div className="nav-index-panel-content">
+          <p className="mb-2 px-2 text-[10px] font-bold uppercase tracking-wider text-[var(--color-muted)] font-mono">
+            Portfolio index
+          </p>
+          <ol className="flex flex-col m-0 p-0 list-none divide-y divide-[var(--color-rule)] border-t border-[var(--color-rule)]">
+            {previewNavigation.map((item, index) => (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-3 px-2 py-2 text-sm font-semibold text-[var(--color-ink-2)] hover:bg-[var(--color-paper-2)] hover:text-[var(--color-ink)] transition-colors"
+                >
+                  <span className="font-mono text-xs text-[var(--color-muted)]">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </MorphPopoverContent>
+    </MorphPopover>
   );
 }
 

@@ -142,21 +142,23 @@
 }
 
 .nav-index {
-  position: static;
+  position: absolute;
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
 }
 
-.nav-index summary {
-  position: absolute;
-  inset-block-start: var(--space-2xs);
-  inset-inline-start: 50%;
+.nav-index-summary {
+  position: relative;
+  display: flex;
+  align-items: center;
   gap: var(--space-2xs);
   padding-inline: var(--space-xs);
   color: var(--color-ink-2);
   cursor: pointer;
   font-size: var(--text-sm);
   font-weight: 650;
-  list-style: none;
-  transform: translateX(-50%);
+  min-height: 2.75rem;
+  border-radius: var(--radius-pill);
   transition:
     background-color var(--dur-fast) var(--ease-out),
     color var(--dur-fast) var(--ease-out);
