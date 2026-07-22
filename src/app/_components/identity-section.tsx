@@ -9,6 +9,9 @@ import { identity, identityContacts } from "@/content/portfolio";
 import { ProfilePortrait } from "@/app/_components/profile-portrait";
 import { TwistingRibbon } from "@/components/ui/twisting-ribbon";
 import { Button } from "@/components/motion/button";
+import { TextReveal } from "@/components/motion/text-reveal";
+
+const MotionButton = motion.create(Button);
 
 const LINKEDIN_PATH =
   "M20.451 20.45h-3.554v-5.568c0-1.328-.023-3.036-1.849-3.036-1.851 0-2.135 1.445-2.135 2.939v5.665H9.359V9h3.414v1.561h.048c.476-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.284zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.45H3.555V9h3.564z";
@@ -56,24 +59,20 @@ export function IdentitySection() {
         <div className="identity-portrait-container">
           <ProfilePortrait ref={portraitRef} name={identity.name} onSmile={() => setShowLockIn(true)} />
           {showLockIn && (
-            <motion.div
+            <MotionButton
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              className="absolute bottom-[calc(100%+1rem)] left-0 w-full z-10"
+              onClick={() => {
+                portraitRef.current?.reset();
+                setShowLockIn(false);
+              }}
+              variant="ghost"
+              ripple
+              pressScale={0.93}
+              className="identity-contact identity-contact-link lock-in-btn !h-auto"
             >
-              <Button
-                onClick={() => {
-                  portraitRef.current?.reset();
-                  setShowLockIn(false);
-                }}
-                variant="ghost"
-                ripple
-                pressScale={0.93}
-                className="identity-contact identity-contact-link lock-in-btn !h-auto w-full justify-center"
-              >
-                Let&apos;s lock in 🤓
-              </Button>
-            </motion.div>
+              Let&apos;s lock in 🤓
+            </MotionButton>
           )}
         </div>
 
