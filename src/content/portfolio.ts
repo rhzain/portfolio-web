@@ -234,9 +234,9 @@ export const projects: readonly Project[] = [
     link: "nutrigrow.me",
     image: "/nutrigrow.png",
     purpose:
-      "An digital health platform aligned with SDG 2.2 to end all forms of malnutrition.",
+      "A digital health platform aligned with SDG 2.2 to end all forms of malnutrition.",
     contribution:
-      "AI & Backend Engineer · Developed core backend services for consultations, health logs, and recommendations; ran usability testing with mothers and teenagers. Built the stunting classification model and integrated it into the backend.",
+      "AI & Backend Engineer · Developed core backend services. Built the stunting classification model and integrated it into the backend.",
     tools: "Machine learning · Backend services · Usability testing",
     featured: false,
   },
